@@ -1,11 +1,14 @@
 
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:longlistview/widgets/LongListView.dart';
 void main(){
   runApp(MaterialApp(
     title: "Long List View",
     home: Scaffold(
       appBar: AppBar(title: Text("Long List View"),),
-      body: getListView(),
+      body: getListView(getListElement()),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
 
@@ -31,17 +34,4 @@ void showSnackBar(BuildContext context, String item){
 List<String> getListElement(){
   var items =List<String>.generate(1000, (counter)=>"Item no. $counter");
   return items;
-}
-Widget getListView(){
-  var listItems=getListElement();
-  var listView=ListView.builder(itemBuilder: (context,intex){
-    return ListTile(
-      leading: Icon(Icons.arrow_right),
-      title: Text(listItems[intex]),
-      onTap: (){
-        showSnackBar(context, listItems[intex]);
-      },
-    );
-  });
-  return listView;
 }
